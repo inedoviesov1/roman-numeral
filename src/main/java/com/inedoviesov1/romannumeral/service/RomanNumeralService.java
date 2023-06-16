@@ -1,7 +1,7 @@
 package com.inedoviesov1.romannumeral.service;
 
 /**
- * Service to convert Integers to and from Roman Numerals.
+ * Service to convert Integers to Roman Numerals.
  */
 public interface RomanNumeralService {
 

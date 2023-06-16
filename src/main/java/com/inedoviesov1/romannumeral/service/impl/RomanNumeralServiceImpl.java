@@ -9,7 +9,7 @@ public class RomanNumeralServiceImpl implements RomanNumeralService {
     @Override
     public String intToRoman(int number) {
         if (number < 1 || number > 3999) {
-            throw new IllegalArgumentException("Number is out of range");
+            throw new IllegalArgumentException("Value should be in the range 1-3999");
         }
 
         int[] arabic = new int[]{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
@@ -25,6 +25,5 @@ public class RomanNumeralServiceImpl implements RomanNumeralService {
         }
 
         return builder.toString();
-
     }
 }
