@@ -1,11 +1,14 @@
 package com.inedoviesov1.romannumeral.controller;
 
-import com.inedoviesov1.romannumeral.model.TransformationResult;
 import com.inedoviesov1.romannumeral.service.RomanNumeralService;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -23,11 +26,18 @@ public class RomanNumeralControllerTest {
     @MockBean
     private RomanNumeralService romanNumeralService;
 
+    @TestConfiguration
+    static class TestConfig {
+        @Bean
+        public MeterRegistry meterRegistry() {
+            return new SimpleMeterRegistry();
+        }
+
+    }
+
     @Test
     public void testIntToRoman_shouldReturnValidResponse() throws Exception {
         when(romanNumeralService.intToRoman(1)).thenReturn("I");
-
-        TransformationResult expectedResult = new TransformationResult("1", "I");
 
         this.mockMvc.perform(get("/romannumeral").param("query", "1"))
                 .andExpect(status().isOk())
