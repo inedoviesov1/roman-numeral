@@ -200,3 +200,35 @@ Example response from http://localhost:8080/actuator/metrics/romannumeral.reques
   ]
 }
 ```
+
+
+## Docker
+
+Roman Numerals application can be containerized using Docker. Docker deamon should be running on the host machine in order to be able to build an image.
+
+Docker image can be built by running the following command:
+
+```shell
+docker build -t inedoviesov/roman-numeral .
+```
+
+This command builds the image called `inedoviesov/roman-numeral` based on the `Dockerfile` located in the root directory.
+
+To run newly built image execute the following command:
+
+```shell
+docker run --name roman-numeral -p 8080:8080 inedoviesov/roman-numeral
+```
+
+_**Note**: after running the container with the above command you cannot run it with the same name again. To start existing container run the command:_
+```shell
+docker start roman-numeral 
+```
+
+You can connect to the running container via terminal by executing a command:
+
+```shell
+docker exec -ti roman-numeral /bin/sh
+```
+
+Container has a configured volume to preserve the logs between the runs. Application logs are located in the directory `/tmp/logs`.

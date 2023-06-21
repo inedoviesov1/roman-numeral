@@ -7,8 +7,8 @@
         </Console>
 
         <RollingFile name="RollingFile"
-                     fileName="${sys:romanNumeralLogPath:-./logs}/romannumeral.log"
-                     filePattern="${sys:romanNumeralLogPath:-./logs}/romannumeral-%d{-dd-MM-yyyy}-%i.log.gz">
+                     fileName="${env:romanNumeralLogPath:-./logs}/romannumeral.log"
+                     filePattern="${env:romanNumeralLogPath:-./logs}/romannumeral-%d{-dd-MM-yyyy}-%i.log.gz">
             <PatternLayout>
                 <pattern>%d %p %C{1.} [%t] %m%n</pattern>
             </PatternLayout>
